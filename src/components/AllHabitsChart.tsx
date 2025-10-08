@@ -34,7 +34,7 @@ const chartConfig = {
 
 export default function AllHabitsChart() {
   return (
-    <Card className="h-full w-[60%] bg-[#1c1c1c] text-cyan-50 border-none">
+    <Card className="mt-10 w-[100%] lg:w-[60%] bg-[#1c1c1c] text-cyan-50 border-none">
       <CardHeader>
         <CardTitle className="text-2xl">Your Habits</CardTitle>
       </CardHeader>

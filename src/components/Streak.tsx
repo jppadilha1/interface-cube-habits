@@ -48,7 +48,7 @@ export default function StreakChart() {
   }, []);
 
   return (
-    <Card className="flex flex-col ml-4 h-[80%] w-[40%] bg-[#1c1c1c] text-cyan-50 border-none">
+    <Card className="flex flex-col ml-0 mt-3 w-[100%] lg:w-[40%] lg:mt-0 lg:ml-4 bg-[#1c1c1c] text-cyan-50 border-none">
       <CardHeader className="items-center pb-0">
         <CardTitle className="text-2xl">Streak of all Habits</CardTitle>
       </CardHeader>
