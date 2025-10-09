@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "../globals.css";
+import "../../globals.css";
+import { Header } from "../../../components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,16 +18,17 @@ export const metadata: Metadata = {
   description: "Your favorite Habit Tracker",
 };
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div className="w-full">
       <div
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center justify-center`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col`}
       >
+        <Header />
         {children}
       </div>
     </div>
