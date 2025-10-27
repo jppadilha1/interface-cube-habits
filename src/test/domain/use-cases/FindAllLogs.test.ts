@@ -1,7 +1,7 @@
-import { HabitLog } from "../../../domain/entities/HabitLog";
-import { FindAllLogs } from "../../../domain/use-cases/FindAllLogs";
-import { RegisterLog } from "../../../domain/use-cases/RegisterLog";
-import { MockHabitLogRepository } from "../../../infra/mocks/MockHabitLogRepository";
+import { HabitLog } from "../../../core/domain/entities/HabitLog";
+import { FindAllLogs } from "../../../core/domain/use-cases/FindAllLogs";
+import { RegisterLog } from "../../../core/domain/use-cases/RegisterLog";
+import { MockHabitLogRepository } from "../../../core/infra/mocks/MockHabitLogRepository";
 
 describe("FindAllLogs UseCase", () => {
   it("Should create log correctly", async () => {

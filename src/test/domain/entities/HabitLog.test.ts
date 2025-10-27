@@ -1,4 +1,4 @@
-import { HabitLog } from "../../../domain/entities/HabitLog";
+import { HabitLog } from "../../../core/domain/entities/HabitLog";
 
 describe("Entity HabitLog", () => {
   it("Should create a valid HabitLog instance", () => {

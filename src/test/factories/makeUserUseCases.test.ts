@@ -1,4 +1,4 @@
-import { makeUserUseCases } from "../../factories/makeUserUseCases";
+import { makeUserUseCases } from "../../core/factories/makeUserUseCases";
 
 describe("makeUserUseCases", () => {
   it("should register and login user with use cases", () => {

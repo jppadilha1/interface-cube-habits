@@ -1,6 +1,6 @@
-import { Habit } from "../../../domain/entities/Habit";
-import { Description } from "../../../domain/value-objects/description";
-import { MockHabitRepository } from "../../../infra/mocks/MockHabitRepository";
+import { Habit } from "../../../core/domain/entities/Habit";
+import { Description } from "../../../core/domain/value-objects/description";
+import { MockHabitRepository } from "../../../core/infra/mocks/MockHabitRepository";
 
 describe("MockHabitRepository", () => {
   it("Should create a habit correctly", async () => {

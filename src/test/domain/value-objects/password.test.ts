@@ -1,4 +1,4 @@
-import { Password } from "../../../domain/value-objects/password";
+import { Password } from "../../../core/domain/value-objects/password";
 
 describe("Password", () => {
   it("should create a valid password", () => {

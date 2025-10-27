@@ -1,8 +1,8 @@
-import { Habit } from "../../../domain/entities/Habit";
-import { MockHabitRepository } from "../../../infra/mocks/MockHabitRepository";
-import { Description } from "../../../domain/value-objects/description";
-import { CreateHabit } from "../../../domain/use-cases/CreateHabit";
-import { UpdateHabit } from "../../../domain/use-cases/UpdateHabit";
+import { Habit } from "../../../core/domain/entities/Habit";
+import { MockHabitRepository } from "../../../core/infra/mocks/MockHabitRepository";
+import { Description } from "../../../core/domain/value-objects/description";
+import { CreateHabit } from "../../../core/domain/use-cases/CreateHabit";
+import { UpdateHabit } from "../../../core/domain/use-cases/UpdateHabit";
 
 describe("UpdateHabit Use Case", () => {
   it("should update a habit", async () => {

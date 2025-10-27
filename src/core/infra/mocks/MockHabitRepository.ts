@@ -1,4 +1,4 @@
-import { Description } from "@/core/domain/value-objects/description";
+import { Description } from "../../../core/domain/value-objects/description";
 import { Habit } from "../../domain/entities/Habit";
 import { IHabitRepository } from "../../domain/repositories/IHabitRepository";
 
@@ -50,7 +50,9 @@ export class MockHabitRepository implements IHabitRepository {
   }
 
   async findAll(userId: string): Promise<Habit[] | null> {
-    return this.habits.length > 0 ? this.habits : null;
+    return this.habits.length > 0
+      ? this.habits.filter((habit) => habit.userId == userId)
+      : null;
   }
 
   async update(habit: Habit): Promise<void> {

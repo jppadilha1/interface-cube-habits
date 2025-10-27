@@ -1,5 +1,5 @@
-import { Description } from "../../../domain/value-objects/description";
-import { Habit } from "../../../domain/entities/Habit";
+import { Description } from "../../../core/domain/value-objects/description";
+import { Habit } from "../../../core/domain/entities/Habit";
 
 describe("Entity Habit", () => {
   it("Should create a valid habit", () => {

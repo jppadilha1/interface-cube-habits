@@ -1,8 +1,8 @@
-import { DeleteHabit } from "../../../domain/use-cases/DeleteHabit";
-import { Habit } from "../../../domain/entities/Habit";
-import { Description } from "../../../domain/value-objects/description";
-import { CreateHabit } from "../../../domain/use-cases/CreateHabit";
-import { MockHabitRepository } from "../../../infra/mocks/MockHabitRepository";
+import { DeleteHabit } from "../../../core/domain/use-cases/DeleteHabit";
+import { Habit } from "../../../core/domain/entities/Habit";
+import { Description } from "../../../core/domain/value-objects/description";
+import { CreateHabit } from "../../../core/domain/use-cases/CreateHabit";
+import { MockHabitRepository } from "../../../core/infra/mocks/MockHabitRepository";
 
 describe("DeleteHabit Use Case", () => {
   it("should delete a habit by id", async () => {

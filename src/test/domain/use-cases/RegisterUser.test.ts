@@ -1,6 +1,6 @@
-import { User } from "../../../domain/entities/User";
-import { MockUserRepository } from "../../../infra/mocks/MockUserRepository";
-import { RegisterUser } from "../../../domain/use-cases/RegisterUser";
+import { User } from "../../../core/domain/entities/User";
+import { MockUserRepository } from "../../../core/infra/mocks/MockUserRepository";
+import { RegisterUser } from "../../../core/domain/use-cases/RegisterUser";
 
 describe("RegisterUser Use Case", () => {
   it("should register a new user", async () => {

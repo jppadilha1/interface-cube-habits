@@ -1,4 +1,4 @@
-import { makeHabitLogUseCase } from "../../factories/makeHabitLogsUseCases";
+import { makeHabitLogUseCase } from "../../core/factories/makeHabitLogsUseCases";
 
 describe("makeHabitLogUseCases Factorie", () => {
   it("should register and find all log use cases", () => {

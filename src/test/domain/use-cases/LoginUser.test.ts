@@ -1,6 +1,6 @@
-import { LoginUser } from "../../../domain/use-cases/LoginUser";
-import { RegisterUser } from "../../../domain/use-cases/RegisterUser";
-import { MockUserRepository } from "../../../infra/mocks/MockUserRepository";
+import { LoginUser } from "../../../core/domain/use-cases/LoginUser";
+import { RegisterUser } from "../../../core/domain/use-cases/RegisterUser";
+import { MockUserRepository } from "../../../core/infra/mocks/MockUserRepository";
 
 describe("LoginUser", () => {
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import { Description } from "../../../domain/value-objects/description";
+import { Description } from "../../../core/domain/value-objects/description";
 
 describe("Description", () => {
   it("Should create a valid description", () => {

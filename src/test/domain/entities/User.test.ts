@@ -1,7 +1,7 @@
-import { User } from "../../../domain/entities/User";
-import { Email } from "../../../domain/value-objects/email";
-import { Password } from "../../../domain/value-objects/password";
-import { Username } from "../../../domain/value-objects/username";
+import { User } from "../../../core/domain/entities/User";
+import { Email } from "../../../core/domain/value-objects/email";
+import { Password } from "../../../core/domain/value-objects/password";
+import { Username } from "../../../core/domain/value-objects/username";
 
 describe("Entity User", () => {
   it("Should create a valid user", () => {

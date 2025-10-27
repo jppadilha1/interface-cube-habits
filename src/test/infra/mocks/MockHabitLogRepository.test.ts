@@ -1,5 +1,5 @@
-import { HabitLog } from "../../../domain/entities/HabitLog";
-import { MockHabitLogRepository } from "../../../infra/mocks/MockHabitLogRepository";
+import { HabitLog } from "../../../core/domain/entities/HabitLog";
+import { MockHabitLogRepository } from "../../../core/infra/mocks/MockHabitLogRepository";
 
 describe("MockHabitLogRepository", () => {
   it("Should create a log correctly", async () => {

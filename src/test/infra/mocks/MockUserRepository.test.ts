@@ -1,8 +1,8 @@
-import { MockUserRepository } from "../../../infra/mocks/MockUserRepository";
-import { User } from "../../../domain/entities/User";
-import { Username } from "../../../domain/value-objects/username";
-import { Email } from "../../../domain/value-objects/email";
-import { Password } from "../../../domain/value-objects/password";
+import { MockUserRepository } from "../../../core/infra/mocks/MockUserRepository";
+import { User } from "../../../core/domain/entities/User";
+import { Username } from "../../../core/domain/value-objects/username";
+import { Email } from "../../../core/domain/value-objects/email";
+import { Password } from "../../../core/domain/value-objects/password";
 
 describe("MockUserRepository", () => {
   it("should not throw when updating a non-existent user", async () => {
