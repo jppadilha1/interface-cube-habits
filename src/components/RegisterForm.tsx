@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { makeUserUseCases } from "@/core/factories/makeUserUseCases";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -34,10 +35,23 @@ export function RegisterForm() {
       password: "",
     },
   });
+  const { registerUser } = makeUserUseCases();
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     form.reset();
-    alert(JSON.stringify(values));
+    let user;
+    try {
+      user = await registerUser.execute({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
+    } catch (e) {
+      console.log(`Error in Register: ${e}`);
+      alert(e);
+    }
+
+    if (user) router.push("/login");
   }
 
   return (

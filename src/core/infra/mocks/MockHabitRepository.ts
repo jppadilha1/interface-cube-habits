@@ -4,29 +4,7 @@ import { IHabitRepository } from "../../domain/repositories/IHabitRepository";
 
 export class MockHabitRepository implements IHabitRepository {
   private static instance: MockHabitRepository;
-  private habits: Habit[] = [
-    Habit.create(
-      "1",
-      "user1",
-      Description.create("Beber 3l de água por dia"),
-      new Date(),
-      new Date()
-    ),
-    Habit.create(
-      "2",
-      "user1",
-      Description.create("Fazer 30 minutos de exercício por dia"),
-      new Date(),
-      new Date()
-    ),
-    Habit.create(
-      "3",
-      "user1",
-      Description.create("Ler 20 páginas de um livro por dia"),
-      new Date(),
-      new Date()
-    ),
-  ];
+  private habits: Habit[] = [];
 
   private constructor() {}
 

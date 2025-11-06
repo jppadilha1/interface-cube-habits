@@ -11,10 +11,13 @@ import { Pencil, Trash2 } from "lucide-react";
 import { makeHabitUseCases } from "@/core/factories/makeHabitUseCases";
 import { Habit } from "@/core/domain/entities/Habit";
 import { Description } from "@/core/domain/value-objects/description";
+import { User } from "@/core/domain/entities/User";
 
 export function Main() {
   const [habits, setHabits] = useState<Habit[]>([]);
   const formRef = useRef<HTMLFormElement>(null);
+  const [user, setUser] = useState<string | null>(null);
+  const userId = JSON.parse(user!);
 
   async function handleAdd(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,7 +28,7 @@ export function Main() {
     await create.execute(
       Habit.create(
         `${Math.floor(Math.random() * (1000 - 4 + 1)) + 4}`,
-        "user1",
+        userId.id,
         Description.create(habit),
         new Date(),
         new Date()
@@ -37,12 +40,14 @@ export function Main() {
   }
 
   const fetchHabits = async () => {
+    if (!user) return;
     const { readAll } = makeHabitUseCases();
-    const allHabits = await readAll.execute({ userId: "user1" });
+    const allHabits = await readAll.execute({ userId: userId.id });
     setHabits(allHabits);
   };
 
   useEffect(() => {
+    setUser(localStorage.getItem("user"));
     fetchHabits();
   }, []);
 
@@ -51,8 +56,11 @@ export function Main() {
       return <li className="text-gray-500">Nenhum hábito cadastrado</li>;
     }
     return habits.map((habit) => (
-      <li className="mb-2 text-cyan-50" key={habit.id}>
-        {habit.description.value}
+      <li
+        className="mb-2 text-cyan-50 w-[90%] flex items-center"
+        key={habit.id}
+      >
+        <span className="p-2 break-word">{habit.description.value}</span>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild className="ml-2 cursor-pointer">

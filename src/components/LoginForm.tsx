@@ -17,6 +17,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { makeUserUseCases } from "@/core/factories/makeUserUseCases";
+import { useAuth } from "@/context/AuthContext";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -34,10 +36,22 @@ export function LoginForm() {
       password: "",
     },
   });
+  const { login } = useAuth();
+  const { loginUser } = makeUserUseCases();
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     form.reset();
-    alert(JSON.stringify(values));
+    try {
+      const userLogged = await loginUser.execute({
+        email: values.email,
+        password: values.password,
+      });
+      login(userLogged);
+
+      router.push("/");
+    } catch (e) {
+      alert(e);
+    }
   }
 
   return (
