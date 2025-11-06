@@ -1,0 +1,62 @@
+"use client";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  ReactNode,
+} from "react";
+import { User } from "../core/domain/entities/User";
+import { useRouter } from "next/navigation";
+
+type AuthContextType = {
+  user: User | null;
+  isLoggedIn: boolean;
+  login: (user: User) => void;
+};
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+type AuthProviderProps = {
+  children: React.ReactNode;
+};
+
+export function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  function login(user: User) {
+    localStorage.setItem("user", JSON.stringify(user));
+    setUser(user);
+    setIsLoggedIn(true);
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, isLoggedIn, login }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+type UseAuthHook = () => AuthContextType;
+
+export const useAuth: UseAuthHook = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth deve ser usado dentro do AuthProvider");
+  }
+  return context;
+};
+
+export function AuthGuard({ children }: { children: ReactNode }) {
+  const { isLoggedIn } = useAuth();
+  const route = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      route.push("/login");
+    }
+  }, []);
+
+  return children;
+}
