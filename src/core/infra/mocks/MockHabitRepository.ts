@@ -41,6 +41,8 @@ export class MockHabitRepository implements IHabitRepository {
   }
 
   async delete(habitId: string, userId: string): Promise<void> {
-    this.habits = this.habits.filter((habit) => habit.id !== habitId);
+    this.habits = this.habits.filter(
+      (habit) => habit.id !== habitId && userId == habit.userId
+    );
   }
 }

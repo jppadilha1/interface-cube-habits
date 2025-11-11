@@ -54,7 +54,7 @@ export function AuthGuard({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      route.push("/login");
+      route.push("/register");
     }
   }, []);
 

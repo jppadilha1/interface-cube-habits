@@ -10,7 +10,7 @@ export class FindHabits {
     const habit = await this.habitRepository.findAll(userId);
 
     if (!habit) {
-      throw new Error("Habit not found");
+      throw new Error("Habits not found");
     }
 
     return habit;
