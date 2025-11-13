@@ -19,12 +19,6 @@ import {
 
 export const description = "A horizontal bar chart";
 
-const chartData = [
-  { habit: "Ler 20 minutos", streak: 186 },
-  { habit: "Beber 3l d'água", streak: 305 },
-  { habit: "Treinar 1hr", streak: 237 },
-];
-
 const chartConfig = {
   streak: {
     label: "Days",
@@ -32,7 +26,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function AllHabitsChart() {
+export default function AllHabitsChart({
+  logsByHabit,
+}: {
+  logsByHabit: { habit: string; streak: number }[];
+}) {
+  const chartData = logsByHabit;
   return (
     <Card className="mt-10 w-[100%] lg:w-[60%] bg-[#1c1c1c] text-cyan-50 border-none">
       <CardHeader>

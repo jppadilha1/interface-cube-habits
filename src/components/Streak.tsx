@@ -13,8 +13,6 @@ import {
 
 export const description = "A donut chart with text";
 
-const chartData = [{ browser: "days", visitors: 275, fill: "#0288d1" }];
-
 const chartConfig = {
   days: {
     label: "Streak",
@@ -42,10 +40,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function StreakChart() {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
-  }, []);
+export default function StreakChart({ streak }: { streak: number }) {
+  const chartData = [{ browser: "days", habits: streak, fill: "#0288d1" }];
+
+  const totalHabits = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.habits, 0);
+  }, [streak]);
 
   return (
     <Card className="flex flex-col ml-0 mt-3 w-[100%] lg:w-[40%] lg:mt-0 lg:ml-4 bg-[#1c1c1c] text-cyan-50 border-none">
@@ -64,7 +64,7 @@ export default function StreakChart() {
             />
             <Pie
               data={chartData}
-              dataKey="visitors"
+              dataKey="habits"
               nameKey="browser"
               innerRadius={60}
               strokeWidth={5}
@@ -85,7 +85,7 @@ export default function StreakChart() {
                           className="text-3xl font-bold"
                           fill="#fff"
                         >
-                          {totalVisitors.toLocaleString()}
+                          {totalHabits.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}

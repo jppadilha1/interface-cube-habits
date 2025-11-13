@@ -46,7 +46,7 @@ export function LoginForm() {
         email: values.email,
         password: values.password,
       });
-      login(userLogged);
+      login({ id: userLogged.id, username: userLogged.username });
 
       router.push("/");
     } catch (e) {

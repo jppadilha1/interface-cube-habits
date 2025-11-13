@@ -22,33 +22,14 @@ import { Pencil, Trash2 } from "lucide-react";
 import { makeHabitUseCases } from "@/core/factories/makeHabitUseCases";
 import { Habit } from "@/core/domain/entities/Habit";
 import { Description } from "@/core/domain/value-objects/description";
+import { useUserHabits } from "@/hooks/useUserHabits";
 
 export function Main() {
-  const [habits, setHabits] = useState<Habit[]>([]);
+  const { habits, fetchHabits, userId } = useUserHabits();
   const [editing, setEditing] = useState<Habit | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const [user, setUser] = useState<string | null>(null);
-  const userId = JSON.parse(user!);
-
-  const fetchHabits = async () => {
-    if (!user) return;
-    try {
-      const { readAll } = makeHabitUseCases();
-      const allHabits = await readAll.execute({ userId: userId.id });
-      setHabits(allHabits);
-    } catch (e) {
-      console.log(`Error in fetchHabits: ${e}`);
-      setHabits([]);
-    }
-  };
 
   useEffect(() => {
-    setUser(localStorage.getItem("user"));
-    fetchHabits();
-  }, []);
-
-  useEffect(() => {
-    setUser(localStorage.getItem("user"));
     fetchHabits();
   }, [editing]);
 

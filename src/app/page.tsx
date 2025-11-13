@@ -2,12 +2,10 @@
 import { Main } from "../components/Main";
 import Image from "next/image";
 import logo from "../assets/images/logo.png";
-import { useRouter } from "next/navigation";
 import { AuthGuard } from "@/context/AuthContext";
+import Link from "next/link";
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <>
       <AuthGuard>
@@ -24,12 +22,12 @@ export default function Home() {
               CubeHabits
             </h1>
           </span>
-          <button
-            className="w-30 md:w-45 h-12 bg-blue-500 rounded-xl mr-10 md:mr-30 cursor-pointer hover:bg-[#026aa7] text-cyan-50 font-bold"
-            onClick={() => router.push("/dashboard")}
+          <Link
+            className="flex items-center justify-center w-30 md:w-45 h-12 bg-blue-500 rounded-xl mr-10 md:mr-30 cursor-pointer hover:bg-[#026aa7] text-cyan-50 font-bold"
+            href="/dashboard"
           >
             My progress
-          </button>
+          </Link>
         </header>
         <div className="w-full flex items-center justify-center">
           <Main />
