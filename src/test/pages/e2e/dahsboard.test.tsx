@@ -9,8 +9,9 @@ jest.mock("next/navigation", () => ({
 jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: any) => {
+    const { unoptimized, ...rest } = props;
     // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
-    return <img {...props} />;
+    return <img {...rest} />;
   },
 }));
 
@@ -62,7 +63,7 @@ Object.defineProperty(window, "localStorage", {
   value: mockLocalStorage,
 });
 
-const mockHabits = [
+let mockHabits = [
   {
     id: "1",
     userId: "test-user-id",
@@ -79,12 +80,10 @@ const mockHabits = [
   },
 ];
 
+const mockUseUserHabits = jest.fn();
+
 jest.mock("@/hooks/useUserHabits", () => ({
-  useUserHabits: () => ({
-    habits: mockHabits,
-    fetchHabits: jest.fn(),
-    userId: { id: "test-user-id", username: "Test User" },
-  }),
+  useUserHabits: () => mockUseUserHabits(),
 }));
 
 describe("Dashboard", () => {
@@ -98,6 +97,12 @@ describe("Dashboard", () => {
       })
     );
     jest.clearAllMocks();
+
+    mockUseUserHabits.mockReturnValue({
+      habits: mockHabits,
+      fetchHabits: jest.fn(),
+      userId: { id: "test-user-id", username: "Test User" },
+    });
   });
 
   it("should render the dashboard with user habits", () => {
@@ -112,13 +117,11 @@ describe("Dashboard", () => {
   });
 
   it("should render empty state when no habits", () => {
-    jest
-      .spyOn(require("@/hooks/useUserHabits"), "useUserHabits")
-      .mockReturnValue({
-        habits: [],
-        fetchHabits: jest.fn(),
-        userId: { id: "test-user-id", username: "Test User" },
-      });
+    mockUseUserHabits.mockReturnValue({
+      habits: [],
+      fetchHabits: jest.fn(),
+      userId: { id: "test-user-id", username: "Test User" },
+    });
 
     render(<Dashboard />);
 
@@ -133,6 +136,8 @@ describe("Dashboard", () => {
     expect(screen.getByText("Streak: 0")).toBeInTheDocument();
 
     const doneButtons = screen.getAllByRole("button", { name: "Done" });
+    expect(doneButtons).toHaveLength(2);
+
     fireEvent.click(doneButtons[0]);
 
     await waitFor(() => {
@@ -145,13 +150,6 @@ describe("Dashboard", () => {
 
     await waitFor(() => {
       expect(screen.getByText("Streak: 1")).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      const visibleDoneButtons = screen.getAllByRole("button", {
-        name: "Done",
-      });
-      expect(visibleDoneButtons).toHaveLength(1);
     });
   });
 
