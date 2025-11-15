@@ -105,6 +105,7 @@ export function Main() {
               <Button
                 variant="ghost"
                 size="icon"
+                data-testid="update-habit"
                 className={
                   editing?.id === habit.id ? "animate-pulse bg-yellow-600" : ""
                 }
@@ -122,7 +123,11 @@ export function Main() {
             <AlertDialog>
               <TooltipTrigger asChild className="ml-1 cursor-pointer">
                 <AlertDialogTrigger asChild>
-                  <Button variant="ghost" size="icon">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    data-testid="delete-habit"
+                  >
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </AlertDialogTrigger>
