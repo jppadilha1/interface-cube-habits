@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Main } from "@/components/Main";
+import { Habit } from "@/core/domain/entities/Habit";
 
 // Mock  next/navigation
 jest.mock("next/navigation", () => ({
@@ -8,7 +9,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 // Mock do makeHabitUseCases
-const mockHabits: any[] = [];
+const mockHabits: Habit[] = [];
 const mockCreate = jest.fn((habit) => {
   mockHabits.push(habit);
   return Promise.resolve();

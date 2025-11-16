@@ -79,7 +79,7 @@ export default function AllHabitsChart({
           <SnowflakeIcon className="h-4 w-4" />
         </div>
         <div className="text-muted-foreground leading-none">
-          You're tracking 3 habits right now
+          {`You're tracking 3 habits right now`}
         </div>
       </CardFooter>
     </Card>

@@ -52,7 +52,7 @@ jobs:
 
       # Para enviar para o Docker Hub
       - name: Push imagem para o Docker Hub
-        run: docker tag frontend:latest lazarodu/frontend:latest && docker push lazarodu/frontend:latest
+        run: docker tag frontend:latest jppadilhadev/frontend:latest && docker push jppadilhadev/frontend:latest
 
       - name: Deploy para Vercel
         uses: amondnet/vercel-action@v20

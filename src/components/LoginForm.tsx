@@ -63,7 +63,7 @@ export function LoginForm() {
             Welcome Back, Please login to your account.
           </h2>
           <p className="text-[#e0f7fa] text-sm sm:text-base">
-            Let's get better 1% every day
+            {`Let's get better 1% every day`}
           </p>
         </div>
 

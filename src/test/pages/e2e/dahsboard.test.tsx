@@ -1,14 +1,25 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Dashboard from "@/app/dashboard/page";
+import { HabitLog } from "@/core/domain/entities/HabitLog";
+import React from "react";
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/dashboard"),
 }));
 
+interface ImageProps {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  unoptimized?: boolean;
+  [key: string]: unknown;
+}
+
 jest.mock("next/image", () => ({
   __esModule: true,
-  default: (props: any) => {
+  default: (props: ImageProps) => {
     const { unoptimized, ...rest } = props;
     // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
     return <img {...rest} />;
@@ -27,7 +38,7 @@ jest.mock("@/core/factories/makeHabitLogsUseCases", () => ({
 
 jest.mock("@/components/AllHabitsChart", () => ({
   __esModule: true,
-  default: ({ logsByHabit }: any) => (
+  default: ({ logsByHabit }: { logsByHabit: HabitLog[] }) => (
     <div data-testid="all-habits-chart">
       All Habits Chart - {logsByHabit.length} habits
     </div>
@@ -36,13 +47,13 @@ jest.mock("@/components/AllHabitsChart", () => ({
 
 jest.mock("@/components/Streak", () => ({
   __esModule: true,
-  default: ({ streak }: any) => (
+  default: ({ streak }: { streak: number }) => (
     <div data-testid="streak-chart">Streak: {streak}</div>
   ),
 }));
 
 jest.mock("@/context/AuthContext", () => ({
-  AuthGuard: ({ children }: any) => <>{children}</>,
+  AuthGuard: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 
 const mockLocalStorage = (() => {
@@ -63,7 +74,7 @@ Object.defineProperty(window, "localStorage", {
   value: mockLocalStorage,
 });
 
-let mockHabits = [
+const mockHabits = [
   {
     id: "1",
     userId: "test-user-id",
